@@ -21,7 +21,7 @@ class Card
         name = String(format: "%i_of_%@", valueIn, suitIn)
     }
     
-    func compareTo (other: Card) -> Int
+    func compareTo (_ other: Card) -> Int
     {
         return value - other.value
     }

@@ -17,9 +17,9 @@ class Player
         cards = [Card]()
     }
     
-    func addCards (newCards: [Card])
+    func addCards (_ newCards: [Card])
     {
-        cards.appendContentsOf(newCards)
+        cards.append(contentsOf: newCards)
     }
     
     func removeFirstCard() -> Card

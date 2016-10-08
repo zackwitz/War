@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         //create, shuffle, and assign all cards
         let allCards: [Card] = initAllCards()
         let shuffledAllCards = shuffleCards(allCards)
-        player1.cards = Array(shuffledAllCards.prefixUpTo(26))
-        player2.cards = Array(shuffledAllCards.suffixFrom(26))
+        player1.cards = Array(shuffledAllCards.prefix(upTo: 26))
+        player2.cards = Array(shuffledAllCards.suffix(from: 26))
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func playRoundTapped(sender: UIButton)
+    @IBAction func playRoundTapped(_ sender: UIButton)
     {
         if player1.cards.count > 0 && player2.cards.count > 0
         {
@@ -54,11 +54,11 @@ class ViewController: UIViewController {
             //compare the cards and add to winner's array
             if card1.value > card2.value
             {
-                player1.cards.appendContentsOf([card1, card2])
+                player1.cards.append(contentsOf: [card1, card2])
             }
             else if card1.value < card2.value
             {
-                player2.cards.appendContentsOf([card1, card2])
+                player2.cards.append(contentsOf: [card1, card2])
             }
             else
             {
@@ -109,11 +109,11 @@ class ViewController: UIViewController {
         return listOfCards
     }
     
-    func shuffleCards(cardsIn: [Card]) -> [Card]
+    func shuffleCards(_ cardsIn: [Card]) -> [Card]
     {
         //create copy of cards
         var copyCardsIn: [Card] = [Card]()
-        copyCardsIn.appendContentsOf(cardsIn)
+        copyCardsIn.append(contentsOf: cardsIn)
 
         //create new array with random card order
         var cardsOut: [Card] = [Card]()
@@ -123,7 +123,7 @@ class ViewController: UIViewController {
         {
             let maxRandom = UInt32(52 - cardsThrough)
             randomIndex = Int(arc4random_uniform(maxRandom))
-            cardsOut.append(copyCardsIn.removeAtIndex(randomIndex))
+            cardsOut.append(copyCardsIn.remove(at: randomIndex))
             cardsThrough += 1
         }
         print("Shuffled Cards: ")
@@ -132,7 +132,7 @@ class ViewController: UIViewController {
         return cardsOut
     }
     
-    func printCards(cards: [Card])
+    func printCards(_ cards: [Card])
     {
         for card in cards
         {
